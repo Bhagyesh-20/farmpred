@@ -1,0 +1,46 @@
+#meh {
+  color: #f92672;
+  font-weight: bold;
+  text-decoration: none !important;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+
+.weather-container {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.weather-info {
+  text-align: center;
+}
+
+.weather-icon {
+  width: 100px;
+}
+
+.json-response {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.chart-container {
+  padding: 1px; /* Adjust as necessary */
+}
+
+.recharts-cartesian-axis-tick {
+  margin-right: 0 !important; /* Adjust margin-right to 0 */
+  margin-left: 0 !important; /* Adjust margin-left to 0 */
+}
+
+#main-temp{
+  color: orange !important;
+  font-family: 'Verdana'
+}

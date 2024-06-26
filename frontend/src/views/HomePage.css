@@ -1,0 +1,19 @@
+.rounded-container {
+    border-bottom-left-radius: 15px; /* Adjust the radius as needed */
+    border-bottom-right-radius: 15px; /* Adjust the radius as needed */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+    border: 1px solid #ddd; /* Optional: Add border to container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visualization */
+  }
+  
+  .custom-divider {
+    width: 80%; /* Increase the width as needed */
+    height: 2px; /* Adjust the height if needed */
+    background-color: #ffffff; /* Change the color if needed */
+    margin: 0 auto; /* Center the divider */
+    margin-top: 20px; /* Adjust the top margin if needed */
+    margin-bottom: 20px; /* Adjust the bottom margin if needed */
+  }
+  

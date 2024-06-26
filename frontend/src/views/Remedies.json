@@ -1,0 +1,82 @@
+{
+    "Anthracnose": {
+        "remedy": "Use fungicides and practice crop rotation.",
+        "details": "Ensure proper spacing between plants and remove infected plants."
+    },
+    "Apple Scab": {
+        "remedy": "Apply appropriate fungicides.",
+        "details": "Prune and destroy infected leaves and branches."
+    },
+    "Black Spot": {
+        "remedy": "Remove and destroy affected leaves and apply fungicides.",
+        "details": "Ensure good air circulation and avoid overhead watering."
+    },
+    "Blight": {
+        "remedy": "Remove infected plants and apply copper-based fungicides.",
+        "details": "Avoid wetting the foliage and plant resistant varieties."
+    },
+    "Blossom End Rot": {
+        "remedy": "Maintain consistent soil moisture and add calcium to the soil.",
+        "details": "Avoid root damage and provide proper mulching."
+    },
+    "Botrytis": {
+        "remedy": "Remove affected plant parts and apply fungicides.",
+        "details": "Ensure good air circulation and avoid high humidity."
+    },
+    "Brown Rot": {
+        "remedy": "Apply fungicides and remove mummified fruits.",
+        "details": "Prune to increase air circulation and remove infected branches."
+    },
+    "Canker": {
+        "remedy": "Remove infected branches and apply fungicidal sprays.",
+        "details": "Improve tree vigor through proper fertilization and watering."
+    },
+    "Cedar Apple Rust": {
+        "remedy": "Remove nearby cedar trees and apply fungicides.",
+        "details": "Plant resistant varieties and prune affected areas."
+    },
+    "Clubroot": {
+        "remedy": "Improve soil drainage and raise soil pH by adding lime.",
+        "details": "Practice crop rotation and avoid infested soil."
+    },
+    "Crown Gall": {
+        "remedy": "Remove and destroy infected plants and avoid wounding plants.",
+        "details": "Disinfect pruning tools and use resistant plant varieties."
+    },
+    "Downy Mildew": {
+        "remedy": "Apply appropriate fungicides and remove affected leaves.",
+        "details": "Ensure good air circulation and avoid overhead watering."
+    },
+    "Fire Blight": {
+        "remedy": "Prune infected branches and apply bactericides.",
+        "details": "Avoid excessive nitrogen fertilization and disinfect tools."
+    },
+    "Fusarium": {
+        "remedy": "Remove and destroy affected plants and use fungicides.",
+        "details": "Practice crop rotation and avoid overwatering."
+    },
+    "Gray Mold": {
+        "remedy": "Remove infected plant parts and apply fungicides.",
+        "details": "Ensure good air circulation and avoid overcrowding plants."
+    },
+    "Leaf Spots": {
+        "remedy": "Remove affected leaves and apply fungicides.",
+        "details": "Water plants at the base and improve air circulation."
+    },
+    "Mosaic Virus": {
+        "remedy": "Remove infected plants and control insect vectors.",
+        "details": "Plant resistant varieties and avoid using infected tools."
+    },
+    "Nematodes": {
+        "remedy": "Use nematode-resistant plant varieties and solarize soil.",
+        "details": "Practice crop rotation and improve soil organic matter."
+    },
+    "Powdery Mildew": {
+        "remedy": "Apply fungicides and remove affected leaves.",
+        "details": "Ensure good air circulation and avoid overhead watering."
+    },
+    "Verticillium": {
+        "remedy": "Remove and destroy affected plants and improve soil drainage.",
+        "details": "Plant resistant varieties and avoid overwatering."
+    }
+}
