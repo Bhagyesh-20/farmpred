@@ -29,7 +29,7 @@ function Weather() {
         const forecastResult = await axios.get(
           `${api.base}forecast?lat=${latitude}&lon=${longitude}&units=metric&APPID=${api.key}`
         );
-        setForecast(forecastResult.data.list);
+        setForecast(groupForecastData(forecastResult.data.list));
 
         setLoading(false);
       } catch (error) {
@@ -68,21 +68,49 @@ function Weather() {
       const forecastResult = await axios.get(
         `${api.base}forecast?q=${search}&units=metric&APPID=${api.key}`
       );
-      setForecast(forecastResult.data.list);
+      setForecast(groupForecastData(forecastResult.data.list));
     } catch (error) {
       console.error("Error fetching weather data:", error);
     }
   };
 
+  const groupForecastData = (data) => {
+    const groupedData = data.reduce((acc, cur) => {
+      const date = new Date(cur.dt * 1000).toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "short",
+      });
+      if (!acc[date]) {
+        acc[date] = [];
+      }
+      acc[date].push(cur);
+      return acc;
+    }, {});
+
+    return Object.entries(groupedData).map(([date, values]) => {
+      const avgTemp = values.reduce((acc, cur) => acc + cur.main.temp, 0) / values.length;
+      const avgHumidity = values.reduce((acc, cur) => acc + cur.main.humidity, 0) / values.length;
+      const weatherMain = values[0].weather[0].main;
+      const weatherIcon = values[0].weather[0].icon;
+      return {
+        date,
+        temp: avgTemp,
+        humidity: avgHumidity,
+        main: weatherMain,
+        icon: weatherIcon,
+      };
+    });
+  };
+
   const formatDate = (date) => {
-    return new Date(date * 1000).toLocaleDateString("en-US", {
+    return new Date(date).toLocaleDateString("en-US", {
       day: "numeric",
       month: "short",
     });
   };
 
   const formatTime = (date) => {
-    return new Date(date * 1000).toLocaleTimeString("en-US", {
+    return new Date(date).toLocaleTimeString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
@@ -90,15 +118,15 @@ function Weather() {
   };
 
   const formatDay = (date) => {
-    return new Date(date * 1000).toLocaleDateString("en-US", {
+    return new Date(date).toLocaleDateString("en-US", {
       weekday: "short",
     });
   };
 
   return (
     <div className="container">
-      <h1 className="text-center my-4">Weather App</h1>
-      <div className="d-flex justify-content-center mb-4">
+      <h1 className="text-center">Weather App</h1>
+      <div className="d-flex justify-content-center mb">
         <input
           type="text"
           placeholder="Enter city/town..."
@@ -113,7 +141,7 @@ function Weather() {
       <hr className="my-4" />
 
       {!loading ? (
-        <div className="weather-container">
+        <div className="weather-container ">
           <div className="row">
             <div className="col-md-4">
               <div className="weather-info">
@@ -148,56 +176,42 @@ function Weather() {
                     <h1 id="main-temp">
                       {weather.main.temp > 0
                         ? `+${Math.ceil(weather.main.temp)}°C`
-                        : `-${Math.ceil(weather.main.temp)}°C`}
+                        : `${Math.ceil(weather.main.temp)}°C`}
                     </h1>
                     <p>
                       Feels Like{" "}
                       {weather.main.feels_like > 0
                         ? `+${Math.ceil(weather.main.feels_like)}°C`
-                        : `-${Math.ceil(weather.main.feels_like)}°C`}
+                        : `${Math.ceil(weather.main.feels_like)}°C`}
                     </p>
 
-                  
-                  
                     <table className="table table-borderless">
                       <tbody>
-                     
-                      <tr>
-                        
-                        <td>Description </td>
-                        <td>      </td>
-                        <td>{weather.weather[0].description} </td>
-                      </tr>
+                        <tr>
+                          <td>Description</td>
+                          <td>{weather.weather[0].description}</td>
+                        </tr>
                         <tr>
                           <td>Wind Speed</td>
                           <td>
                             <img src={windSpeed} alt="Wind Speed Icon" />{" "}
-                            
+                            {weather.wind.speed} mph
                           </td>
-                          <td>{weather.wind.speed} mph</td>
                         </tr>
-
-
-
                         <tr>
                           <td>Humidity</td>
                           <td>
                             <img src={aqi} alt="Humidity Icon" />{" "}
+                            {weather.main.humidity}%
                           </td>
-                          <td>{weather.main.humidity}%</td>
                         </tr>
-
-
                         <tr>
                           <td>Pressure</td>
                           <td>
-                            <img src={aqi} alt="Humidity Icon" />{" "}
+                            <img src={aqi} alt="Pressure Icon" />{" "}
+                            {weather.main.pressure} mb
                           </td>
-                          <td>{weather.main.pressure}mb</td>
                         </tr>
-
-
-
                       </tbody>
                     </table>
                   </>
@@ -205,40 +219,30 @@ function Weather() {
               </div>
             </div>
 
-           
-
-            {/* <div className="col-md-4">
-              <pre className="json-response">
-                {JSON.stringify(weather, null, 2)}
-              </pre>
-            </div> */}
-          </div>
-
-          <div className="icon-divider my-4">
-            <i className="bi bi-cloud-sun"></i>
-          </div>
-
-          <div className="forecast-container">
-            <div className="row">
-              {forecast.slice(0, 7).map((day, index) => (
-                <div className="col-md-2" key={index}>
-                  <div className="forecast-day">
-                    <p>{formatDay(day.dt)}</p>
-                    <img
-                      src={`http://openweathermap.org/img/wn/${day.weather[0].icon}.png`}
-                      alt={day.weather[0].description}
-                      className="weather-icon"
-                    />
-                    <p>{day.weather[0].main}</p>
-                    <p>
-                      {day.main.temp > 0
-                        ? `+${Math.ceil(day.main.temp)}°C`
-                        : `-${Math.ceil(day.main.temp)}°C`}
-                    </p>
-                    <p>Humidity: {day.main.humidity}%</p>
-                  </div>
+            <div className="col-md-8">
+              <div className="forecast-container">
+                <div className="row">
+                  {forecast.map((day, index) => (
+                    <div className="col-md-2" key={index}>
+                      <div className="forecast-day">
+                        <p>{formatDay(new Date(day.date))}</p>
+                        <img
+                          src={`http://openweathermap.org/img/wn/${day.icon}.png`}
+                          alt={day.main}
+                          className="weather-icon"
+                        />
+                        <p>{day.main}</p>
+                        <p>
+                          {day.temp > 0
+                            ? `+${Math.ceil(day.temp)}°C`
+                            : `${Math.ceil(day.temp)}°C`}
+                        </p>
+                        <p>Humidity: {Math.ceil(day.humidity)}%</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
