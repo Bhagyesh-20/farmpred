@@ -12,7 +12,6 @@ from rest_framework.views import APIView
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.models import load_model 
-import matplotlib.pyplot as plt
 
 from PIL import Image
 import numpy as np

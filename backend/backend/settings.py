@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from dotenv import load_dotenv
+from os import getenv
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,6 +88,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+DATABASES["default"] = dj_database_url.parse("postgresql://farmdb_owner:ZHwE6LOtdGl3@ep-tight-sunset-a1dcx3i7.ap-southeast-1.aws.neon.tech/farmdb?sslmode=require")
+
+# Replace the DATABASES section of your settings.py with this
 
 
 # Password validation
