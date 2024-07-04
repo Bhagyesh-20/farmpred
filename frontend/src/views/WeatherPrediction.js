@@ -14,6 +14,26 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/",
 };
 
+const weatherIcons = {
+  "default": `${process.env.PUBLIC_URL}/icons/sunny.svg`,
+  "01d": `${process.env.PUBLIC_URL}/icons/sunny.svg`, // Clear sky day
+  "01n": `${process.env.PUBLIC_URL}/icons/clearNight.svg`, // Clear sky night
+  "02d": `${process.env.PUBLIC_URL}/icons/cloudy.svg`, // Few clouds day
+  "02n": `${process.env.PUBLIC_URL}/icons/cloudyNight.svg`, // Few clouds night
+  "03d": `${process.env.PUBLIC_URL}/icons/cloudyDay.svg`, // Scattered clouds day
+  "03n": `${process.env.PUBLIC_URL}/icons/cloudyNight.svg`, // Scattered clouds night
+  "04d": `${process.env.PUBLIC_URL}/icons/cloudyDay.svg`, // Broken clouds day
+  "04n": `${process.env.PUBLIC_URL}/icons/cloudyNight.svg`, // Broken clouds night
+  "09d": `${process.env.PUBLIC_URL}/icons/rain.svg`, // Shower rain day
+  "09n": `${process.env.PUBLIC_URL}/icons/rain.svg`, // Shower rain night
+  "10d": `${process.env.PUBLIC_URL}/icons/rain.svg`, // Rain day
+  "10n": `${process.env.PUBLIC_URL}/icons/rain.svg`, // Rain night
+  "11d": `${process.env.PUBLIC_URL}/icons/thunderstorm.svg`, // Thunderstorm day
+  "11n": `${process.env.PUBLIC_URL}/icons/thunderstorm.svg`, // Thunderstorm night
+  "13d": `${process.env.PUBLIC_URL}/icons/snow.svg`, // Snow day
+  "13n": `${process.env.PUBLIC_URL}/icons/snow.svg`, // Snow night
+};
+
 function Weather() {
   const [search, setSearch] = useState("");
   const [weather, setWeather] = useState(null);
@@ -154,6 +174,28 @@ function Weather() {
         </button>
       </div>
 
+      <div class="container-fluid">
+        <div className="container rounded-container col-xxl-8 px-4 py-5">
+
+
+        <p>
+        {formatDay(dateTime)}, {formatTime(dateTime)}
+        </p>
+        <div>
+        <img
+                    src={weatherIcons[weather.weather[0].icon]} // Use the custom icon mapping
+                    alt={weather.weather[0].description}
+                    className="weather-icon"
+                    onError={(e) => console.log(`Error loading icon: ${weatherIcons[weather.weather[0].icon]}`, e)} // Log error
+                  />
+        </div>
+
+        
+
+        </div>
+      </div>
+
+
       <hr className="my-4" />
 
       {!loading ? (
@@ -162,50 +204,17 @@ function Weather() {
             <div className="row">
               <div className="col-md-4">
                 <div className="weather-info">
+
+
+                 
+
+                  
+                  <p>{weather.weather[0].description}</p>
+
+                  <h1>{Math.round(weather.main.temp)}°C</h1>
+
                   <table className="table table-borderless my-0">
                     <tbody>
-                      <tr>
-                        <td>
-                          <p>
-                            {weather.name}, {weather.sys.country}
-                          </p>
-                        </td>
-                        <td>
-                          <p>Today, {formatDate(dateTime)}</p>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <p>
-                    {formatDay(dateTime)}, {formatTime(dateTime)}
-                  </p>
-
-                  <img
-                    src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`}
-                    alt={weather.weather[0].description}
-                    className="weather-icon"
-                  />
-                  <p>{weather.weather[0].main}</p>
-
-                  <h1 id="main-temp">
-                    {weather.main.temp > 0
-                      ? `+${Math.ceil(weather.main.temp)}°C`
-                      : `${Math.ceil(weather.main.temp)}°C`}
-                  </h1>
-                  <p>
-                    Feels Like{" "}
-                    {weather.main.feels_like > 0
-                      ? `+${Math.ceil(weather.main.feels_like)}°C`
-                      : `${Math.ceil(weather.main.feels_like)}°C`}
-                  </p>
-
-                  <table className="table table-borderless">
-                    <tbody>
-                      <tr>
-                        <td>Description</td>
-                        <td>{weather.weather[0].description}</td>
-                      </tr>
                       <tr>
                         <td>Wind Speed</td>
                         <td>
@@ -241,8 +250,10 @@ function Weather() {
                           <p>{day.date}</p>
                           <p>{day.main}</p>
                           <img
-                            src={`http://openweathermap.org/img/wn/${day.icon}.png`}
+                            src={weatherIcons[day.icon]} // Use the custom icon mapping
                             alt={day.main}
+                            className="weather-icon"
+                            onError={(e) => console.log(`Error loading icon: ${weatherIcons[day.icon]}`, e)} // Log error
                           />
                           <p>{Math.ceil(day.temp)}°C</p>
                           <p>Humidity: {Math.ceil(day.humidity)}%</p>
@@ -250,6 +261,10 @@ function Weather() {
                       </div>
                     ))}
                   </div>
+
+
+
+
                   <div>
                     <CircularProgressbar
                       value={percentageSun}
@@ -268,7 +283,11 @@ function Weather() {
                 </div>
               </div>
             </div>
+
           </div>
+
+
+
         )
       ) : (
         <div>Loading...</div>

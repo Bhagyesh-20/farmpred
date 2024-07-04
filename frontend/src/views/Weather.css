@@ -44,3 +44,14 @@
   color: orange !important;
   font-family: 'Verdana'
 }
+
+
+.weather-container {
+  width: 110%; /* Adjust the width as needed */
+  max-width: 2000px; /* Optional: Set a maximum width */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Optional: Add some padding */
+  background-color: #f8f9fa; /* Optional: Add a background color */
+  border-radius: 10px; /* Optional: Add rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
