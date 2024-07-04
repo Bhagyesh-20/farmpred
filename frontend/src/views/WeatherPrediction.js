@@ -7,7 +7,6 @@ import aqi from "../dots/aqi.png";
 import uv from "../dots/uv.png";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { Box } from "rebass";
 
 const api = {
   key: "0a650328d846b039c204fd46796d1522",
@@ -174,124 +173,102 @@ function Weather() {
         </button>
       </div>
 
-      <div class="container-fluid">
-        <div className="container rounded-container col-xxl-8 px-4 py-5">
-
-
-        <p>
-        {formatDay(dateTime)}, {formatTime(dateTime)}
-        </p>
-        <div>
-        <img
+      <div className="weather-box">
+        {!loading ? (
+          weather && (
+            <div className="weather-container">
+              <div className="current-weather">
+                <p>
+                  {formatDay(dateTime)}, {formatTime(dateTime)}
+                </p>
+                <div>
+                  <img
                     src={weatherIcons[weather.weather[0].icon]} // Use the custom icon mapping
                     alt={weather.weather[0].description}
                     className="weather-icon"
-                    onError={(e) => console.log(`Error loading icon: ${weatherIcons[weather.weather[0].icon]}`, e)} // Log error
+                    onError={(e) =>
+                      console.log(
+                        `Error loading icon: ${weatherIcons[weather.weather[0].icon]}`,
+                        e
+                      )
+                    } // Log error
                   />
-        </div>
-
-        
-
-        </div>
-      </div>
-
-
-      <hr className="my-4" />
-
-      {!loading ? (
-        weather && (
-          <div className="weather-container">
-            <div className="row">
-              <div className="col-md-4">
-                <div className="weather-info">
-
-
-                 
-
-                  
-                  <p>{weather.weather[0].description}</p>
-
-                  <h1>{Math.round(weather.main.temp)}°C</h1>
-
-                  <table className="table table-borderless my-0">
-                    <tbody>
-                      <tr>
-                        <td>Wind Speed</td>
-                        <td>
-                          <img src={windSpeed} alt="Wind Speed Icon" />{" "}
-                          {weather.wind.speed} mph
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Humidity</td>
-                        <td>
-                          <img src={aqi} alt="Humidity Icon" />{" "}
-                          {weather.main.humidity}%
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Pressure</td>
-                        <td>
-                          <img src={aqi} alt="Pressure Icon" />{" "}
-                          {weather.main.pressure} mb
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
+                <p>{weather.weather[0].description}</p>
+                <h1>{Math.round(weather.main.temp)}°C</h1>
+                <table className="table table-borderless my-0">
+                  <tbody>
+                    <tr>
+                      <td>Wind Speed</td>
+                      <td>
+                        <img src={windSpeed} alt="Wind Speed Icon" />{" "}
+                        {weather.wind.speed} mph
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Humidity</td>
+                      <td>
+                        <img src={aqi} alt="Humidity Icon" />{" "}
+                        {weather.main.humidity}%
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Pressure</td>
+                      <td>
+                        <img src={aqi} alt="Pressure Icon" />{" "}
+                        {weather.main.pressure} mb
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div className="col-md-8">
-                <div className="forecast-container">
-                  <div className="row">
-                    {forecast.map((day, index) => (
-                      <div className="col-md-2" key={index}>
-                        <div className="forecast-card">
-                          <p>{day.date}</p>
-                          <p>{day.main}</p>
-                          <img
-                            src={weatherIcons[day.icon]} // Use the custom icon mapping
-                            alt={day.main}
-                            className="weather-icon"
-                            onError={(e) => console.log(`Error loading icon: ${weatherIcons[day.icon]}`, e)} // Log error
-                          />
-                          <p>{Math.ceil(day.temp)}°C</p>
-                          <p>Humidity: {Math.ceil(day.humidity)}%</p>
-                        </div>
+              <div className="forecast-container">
+                <div className="row">
+                  {forecast.map((day, index) => (
+                    <div className="col-md-2" key={index}>
+                      <div className="forecast-card">
+                        <p>{day.date}</p>
+                        <p>{day.main}</p>
+                        <img
+                          src={weatherIcons[day.icon]} // Use the custom icon mapping
+                          alt={day.main}
+                          className="weather-icon"
+                          onError={(e) =>
+                            console.log(
+                              `Error loading icon: ${weatherIcons[day.icon]}`,
+                              e
+                            )
+                          } // Log error
+                        />
+                        <p>{Math.ceil(day.temp)}°C</p>
+                        <p>Humidity: {Math.ceil(day.humidity)}%</p>
                       </div>
-                    ))}
-                  </div>
-
-
-
-
-                  <div>
-                    <CircularProgressbar
-                      value={percentageSun}
-                      strokeWidth={0.5}
-                      circleRatio={0.5}
-                      styles={buildStyles({
-                        rotation: 0.75,
-                        pathColor: "orange", // Change stroke color
-                        trailColor: "grey",
-                        strokeLinecap: "round", // Change stroke linecap
-                        pathTransitionDuration: 0.5, // Change animation duration
-                        pathTransition: "none", // Disable animation
-                      })}
-                    />
-                  </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="sun-progress">
+                  <CircularProgressbar
+                    value={percentageSun}
+                    strokeWidth={0.5}
+                    circleRatio={0.5}
+                    styles={buildStyles({
+                      rotation: 0.75,
+                      pathColor: "orange", // Change stroke color
+                      trailColor: "grey",
+                      strokeLinecap: "round", // Change stroke linecap
+                      pathTransitionDuration: 0.5, // Change animation duration
+                      pathTransition: "none", // Disable animation
+                    })}
+                  />
                 </div>
               </div>
             </div>
-
-          </div>
-
-
-
-        )
-      ) : (
-        <div>Loading...</div>
-      )}
+          )
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
     </div>
   );
 }
