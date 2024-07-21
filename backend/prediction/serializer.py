@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.validators import UniqueValidator
-from .models import User, Profile
+from .models import User, Profile,Order, Product
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,4 +50,18 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
+        fields = '__all__'
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    product = ProductSerializer()
+
+    class Meta:
+        model = Order
         fields = '__all__'

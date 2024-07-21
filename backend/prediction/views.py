@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import User
-from .serializer import MyTokenObtainPairSerializer, RegisterSerializer
+from .models import User,Product,Order
+from .serializer import MyTokenObtainPairSerializer, RegisterSerializer, OrderSerializer,ProductSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -90,3 +90,22 @@ class PredictView(APIView):
         logger.debug("Received file: %s", file.name)
         
         return Response({"prediction": predicted_class_name}, status=status.HTTP_200_OK)
+    
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated]
+
+# Order ViewSet
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+# Register the viewsets with a router in your urls.py
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'products', ProductViewSet, basename='product')
+router.register(r'orders', OrderViewSet, basename='order')
