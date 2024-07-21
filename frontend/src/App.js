@@ -9,6 +9,7 @@ import Loginpage from './views/Loginpage'; // done
 import Navbar from './views/Navbar'; // done
 import CropDisease from './views/CropDisease'; //done
 import Weather from './views/WeatherPrediction'; // done
+import MarketPlace from './views/MarketPlace';
 function App() {
   return (
     <div className="App">
@@ -21,7 +22,7 @@ function App() {
           <Route path="/cropdisease" element={<CropDisease />} />
           <Route path="/weather" element={<Weather />} />
           <Route path="/" element={<Homepage />} />
-        
+          <Route path="/marketplace" element = {<MarketPlace/>}/>
         </Routes>
       </AuthProvider>
     </Router>

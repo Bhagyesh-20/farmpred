@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-t%9rwdkqmreqze1xcux@z9_i!%cfa2_9zlhscue30wyj&plyys
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['13.127.141.157','localhost']
 
 
 # Application definition
@@ -85,11 +85,17 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'django',
+        'USER': 'admin',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': ''
+
+
     }
 }
 
-DATABASES["default"] = dj_database_url.parse("postgresql://farmdb_owner:ZHwE6LOtdGl3@ep-tight-sunset-a1dcx3i7.ap-southeast-1.aws.neon.tech/farmdb?sslmode=require")
+
 
 # Replace the DATABASES section of your settings.py with this
 

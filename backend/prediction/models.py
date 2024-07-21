@@ -14,16 +14,21 @@ class User(AbstractUser):
 
 
 class Product(models.Model):
-    PRODUCT_TYPE_CHOICES = [
-        ('buy', 'Buy Only'),
-        ('rent', 'Rent Only'),
-        ('both', 'Buy and Rent'),
+    CATEGORY_CHOICES = [
+        ('fruit', 'Fruit'),
+        ('vegetable', 'Vegetable'),
+        ('grain', 'Grain'),
+        ('equipment', 'Equipment'),  # Add Equipment category
+    ]
+    AVAILABILITY_CHOICES = [
+        ('buy', 'Buy'),
+        ('rent', 'Rent'),
     ]
 
     name = models.CharField(max_length=255)
-    description = models.TextField()
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='equipment')  # Default to equipment
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    availability = models.CharField(max_length=4, choices=PRODUCT_TYPE_CHOICES)
+    available_for = models.CharField(max_length=10, choices=AVAILABILITY_CHOICES, default='rent')  # Default to rent
 
     def __str__(self):
         return self.name
