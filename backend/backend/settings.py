@@ -135,6 +135,11 @@ AUTH_USER_MODEL = 'prediction.User'
 
 STATIC_URL = 'static/'
 
+import os
+
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -186,3 +191,5 @@ import os
 # # Media Root (Absolute filesystem path to the directory that will hold user-uploaded files)
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
 SAVED_MODEL_PATH = os.path.join(BASE_DIR, 'crop_disease_model.h5')
+
+
