@@ -181,9 +181,8 @@ function Weather() {
                 <p>
                   {formatDay(dateTime)}, {formatTime(dateTime)}
                 </p>
-                <div>
-                  <img
-                    src={weatherIcons[weather.weather[0].icon]} // Use the custom icon mapping
+                <img
+                    src={weatherIcons[weather.weather[0].icon]} 
                     alt={weather.weather[0].description}
                     className="weather-icon"
                     onError={(e) =>
@@ -193,7 +192,6 @@ function Weather() {
                       )
                     } // Log error
                   />
-                </div>
                 <p>{weather.weather[0].description}</p>
                 <h1>{Math.round(weather.main.temp)}°C</h1>
                 <table className="table table-borderless my-0">
