@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext';
 import './CropDisease.css'
 import remedies from './Remedies.json'
 
-const baseURL = 'http://65.2.186.175:8000/prediction/';
+const baseURL = 'http://127.0.0.1:8000/';
 
 const CropDisease = () => {
     const { authTokens } = useContext(AuthContext);
