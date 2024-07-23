@@ -19,7 +19,6 @@ import logging
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-model_path = os.path.join(BASE_DIR, 'prediction', 'crop_disease_model.h5')
 
 
 class MyTokenObtainPairView(TokenObtainPairView):

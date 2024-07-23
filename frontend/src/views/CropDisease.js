@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext';
 import './CropDisease.css'
 import remedies from './Remedies.json'
 
-const baseURL = 'http://127.0.0.1:8000/';
+const baseURL = 'http://13.127.141.157:8000/prediction';
 
 const CropDisease = () => {
     const { authTokens } = useContext(AuthContext);
@@ -40,7 +40,7 @@ const CropDisease = () => {
             }
         } catch (error) {
             console.error('Error uploading file:', error);
-            setError('Error uploading file. Please try again.');
+            setError('Error uploading file. Please try again. Please Login to your account if not');
             setPrediction(null);
             setRemedy(null);
         }
