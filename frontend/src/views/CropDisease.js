@@ -59,6 +59,7 @@ const CropDisease = () => {
         }
     };
     
+    
 
     return (
         <div>
