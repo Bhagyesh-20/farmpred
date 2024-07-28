@@ -12,7 +12,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('register/', views.RegisterView.as_view(), name='auth_register'),
     path('test/', views.testEndPoint, name='test'),
-    path('predict/', views.PredictView.as_view(), name='predict'),
+    # path('predict/', views.PredictView.as_view(), name='predict'),
     path('', views.getRoutes, name='routes'),
     path('', include(router.urls)),  # Include router URLs
 ]
