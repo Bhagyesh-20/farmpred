@@ -4,7 +4,7 @@ import AuthContext from '../context/AuthContext';
 import './CropDisease.css';
 import remedies from './Remedies.json';
 
-const baseURL = 'https://api-ml-1.onrender.com/';
+const baseURL = 'https://api-ml-1.onrender.com';
 
 const CropDisease = () => {
     const { authTokens } = useContext(AuthContext);
