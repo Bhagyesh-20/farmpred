@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
     const loginUser = async (email, password) => {
-        const response = await fetch("http://127.0.0.1:8000/prediction/token/", {
+        const response = await fetch("https://farmpred.vercel.app/prediction/token/", {
             method: "POST",
             headers:{
                 "Content-Type":"application/json"
@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const registerUser = async (email, username, password, password2) => {
-        const response = await fetch("http://127.0.0.1:8000/prediction/register/", {
+        const response = await fetch("https://farmpred.vercel.app/prediction/register/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
