@@ -192,13 +192,11 @@ SIMPLE_JWT = {
 CORS_ALLOW_ALL_ORIGINS = True
 
 import os
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
 # # Media Root (Absolute filesystem path to the directory that will hold user-uploaded files)
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
-SAVED_MODEL_PATH = os.path.join(BASE_DIR, 'crop_disease_model.h5')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    
 
-import os
 STATIC_URL = 'static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static')
