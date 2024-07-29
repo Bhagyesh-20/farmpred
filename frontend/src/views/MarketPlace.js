@@ -31,6 +31,7 @@ function MarketPlace() {
   return (
     <div>
       <h1>Welcome to MarketPlace</h1>
+      <p>Cloudinary support is been added to populate the page</p>
       <Carousel
         additionalTransfrom={0}
         arrows
