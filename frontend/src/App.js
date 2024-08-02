@@ -22,7 +22,7 @@ function App() {
           <Route path="/cropdisease" element={<CropDisease />} />
           <Route path="/weather" element={<Weather />} />
           <Route path="/" element={<Homepage />} />
-          <Route path="/marketplace" element = {<MarketPlace/>}/>
+          {/* <Route path="/marketplace" element = {<MarketPlace/>}/> */}
         </Routes>
       </AuthProvider>
     </Router>
